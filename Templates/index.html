@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Mission to Mars</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body class='text-white' style="background-color:rgb(19, 3, 44);">
+  <div class="container">
+
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center"
+      style="background-image: url(https://p4.wallpaperbetter.com/wallpaper/324/605/138/no-man-s-sky-no-man-s-sky-next-video-games-space-wallpaper-5826bdf8f0c02cc8107c31be8882a45a.jpg); background-size: 100%; height: 100%;">
+      <h1 style="font-family:Impact;color:navy;font-size: 70px;" class="display-4;">Mission to Mars</h1>
+      <a class="btn btn-lg text-white" style="background-color:#5e0925;" href="/scrape" role="button">Scrape New
+        Data</a>
+    </div>
+
+    <!---News scraping-->
+    <div class="container">
+      <h2 style="color:rgb(184, 196, 27); font-family:Impact">Latest Mars News</h2>
+      {% if data and data.news_title[0] %}
+      <h4 style="color:rgb(121, 23, 6)">{{data.news_title[0]}}</h4>
+      <p>{{data.news_p[0]}}</p> 
+      {% endif %}
+    </div>
+    <div class="container">
+      <h2 style="color:rgb(207, 92, 10);font-family:Impact;text-align: left;">Featured Mars Image</h2>
+      <img src="{{data.featured_image_url}}" style="max-width:100%;" alt="mars image">
+    </div>
+    <!---Featured Image-->
+    <div class="container">
+      <h2 style="color:rgb(134, 16, 81); font-family:Impact">Mars Facts</h2>
+      <table>{{ data.html_table|safe}}</table>
+    </div>
+    
+  </div>
+
+    <!---CONTAINTER CLOSE-->
+    <div class="container">
+    <h2 style="padding-top:30px; padding-bottom: 30px; text-align: left; color:rgb(167, 167, 79);font-family:Impact;">
+      Mars Hemispheres</h2>
+    </div>
+  </div>
+  <!---body->container closed-->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12">
+            {% if data and data.final_list[0] %}
+            <h3> {{data.final_list[0]["title"]}} </h3>
+            <img src={{data.final_list[0]["img_url"]}} style="max-width:100%;
+             height:auto;" />
+             {% endif %}
+          </div>
+          <div class="col-md-12">
+            {% if data and data.final_list[1] %}
+            <h3> {{data.final_list[1]["title"]}} </h3>
+            <img src={{data.final_list[1]["img_url"]}} style="max-width:100%;
+             height:auto;" />
+             {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12">
+            {% if data and data.final_list[2] %}
+            <h3> {{data.final_list[2]["title"]}} </h3>
+            <img src={{data.final_list[2]["img_url"]}} style="max-width:100%;
+             height:auto;" />
+             {% endif %}
+          </div>
+          <div class="col-md-12">
+            {% if data and data.final_list[3] %}
+            <h3> {{data.final_list[3]["title"]}} </h3>
+            <img src={{data.final_list[3]["img_url"]}} style="max-width:100%;
+             height:auto;" />
+             {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>
