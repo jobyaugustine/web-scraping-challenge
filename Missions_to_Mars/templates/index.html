@@ -22,19 +22,19 @@
     <!---News scraping-->
     <div class="container">
       <h2 style="color:rgb(184, 196, 27); font-family:Impact">Latest Mars News</h2>
-      {% if data and data.news_title[0] %}
-      <h4 style="color:rgb(121, 23, 6)">{{data.news_title[0]}}</h4>
-      <p>{{data.news_p[0]}}</p> 
+      {% if data and mars_data.news_title[0] %}
+      <h4 style="color:rgb(121, 23, 6)">{{mars_data.news_title[0]}}</h4>
+      <p>{{mars_data.news_p[0]}}</p> 
       {% endif %}
     </div>
     <div class="container">
       <h2 style="color:rgb(207, 92, 10);font-family:Impact;text-align: left;">Featured Mars Image</h2>
-      <img src="{{data.featured_image_url}}" style="max-width:100%;" alt="mars image">
+      <img src="{{mars_data.featured_image_url}}" style="max-width:100%;" alt="mars image">
     </div>
     <!---Featured Image-->
     <div class="container">
       <h2 style="color:rgb(134, 16, 81); font-family:Impact">Mars Facts</h2>
-      <table>{{ data.html_table|safe}}</table>
+      <table>{{ mars_data.html_table|safe}}</table>
     </div>
     
   </div>
@@ -51,16 +51,16 @@
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
-            {% if data and data.final_list[0] %}
-            <h3> {{data.final_list[0]["title"]}} </h3>
-            <img src={{data.final_list[0]["img_url"]}} style="max-width:100%;
+            {% if data and mars_data.final_list[0] %}
+            <h3> {{mars_data.final_list[0]['title']}} </h3>
+            <img src={{mars_data.final_list[0]["img_url"]}} style="max-width:100%;
              height:auto;" />
              {% endif %}
           </div>
           <div class="col-md-12">
-            {% if data and data.final_list[1] %}
-            <h3> {{data.final_list[1]["title"]}} </h3>
-            <img src={{data.final_list[1]["img_url"]}} style="max-width:100%;
+            {% if data and mars_data.final_list[1] %}
+            <h3> {{mars_data.final_list[1]["title"]}} </h3>
+            <img src={{mars_data.final_list[1]["img_url"]}} style="max-width:100%;
              height:auto;" />
              {% endif %}
           </div>
@@ -69,16 +69,16 @@
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
-            {% if data and data.final_list[2] %}
-            <h3> {{data.final_list[2]["title"]}} </h3>
-            <img src={{data.final_list[2]["img_url"]}} style="max-width:100%;
+            {% if data and mars_data.final_list[2] %}
+            <h3> {{mars_data.final_list[2]["title"]}} </h3>
+            <img src={{mars_data.final_list[2]["img_url"]}} style="max-width:100%;
              height:auto;" />
              {% endif %}
           </div>
           <div class="col-md-12">
-            {% if data and data.final_list[3] %}
-            <h3> {{data.final_list[3]["title"]}} </h3>
-            <img src={{data.final_list[3]["img_url"]}} style="max-width:100%;
+            {% if data and mars_data.final_list[3] %}
+            <h3> {{mars_data.final_list[3]["title"]}} </h3>
+            <img src={{mars_data.final_list[3]["img_url"]}} style="max-width:100%;
              height:auto;" />
              {% endif %}
           </div>

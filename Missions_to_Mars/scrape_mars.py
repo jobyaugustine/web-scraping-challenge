@@ -4,7 +4,7 @@ import time
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 
-def scrape_info():
+def scrape():
 
     mars_data={}
 
@@ -22,11 +22,13 @@ def scrape_info():
     html = browser.html
     soup = bs(html, "html.parser")
 
-    news_title = soup.find('div',class_='content_title')
-    news_p = soup.find('div', class_='article_teaser_body')
+    news_title = soup.find('div',class_='content_title').get_text()
+    news_p = soup.find('div', class_='article_teaser_body').get_text()
 
-    #mars_data["news_title"] = news_title
-    #mars_data["news_p"] = news_p
+    mars_data["news_title"] = news_title
+    mars_data["news_p"] = news_p
+
+    
 
  # NASA  JPL Mars Space Images - Featured Image
     url = "https://spaceimages-mars.com"
@@ -42,7 +44,7 @@ def scrape_info():
 
     featureimg=topclass.a['href']
 
-    featured_image_url =jplurl + "/" + featureimg
+    featured_image_url =url + "/" + featureimg
     featured_image_url = "'" + featured_image_url + "'" 
     
     mars_data["featured_image_url"] = featured_image_url
@@ -59,7 +61,10 @@ def scrape_info():
 
     tables = pd.read_html(url)
     df = tables[0]
-    html_table = df.to_html()
+    df2= df.drop(columns = [2])
+    df2.columns=['Property','Measurement']
+    # html_table = df2.to_html()
+    html_table =df2.to_html("mars_info_table.html")
 
     #Adding to the dictionary
     mars_data["html_table"] = html_table
@@ -87,7 +92,7 @@ def scrape_info():
     
         each_title2= each_title.text
         title_list.append(each_title2) 
-        nextpage=hemsph_url + href
+        nextpage=url + href
         imgurl_list.append(nextpage)
         counter = counter + 1
     
@@ -112,5 +117,5 @@ def scrape_info():
 
     return mars_data
 
-if __name__=="__main__":
-    scrape()
+# if __name__=="__main__":
+#     scrape()
